@@ -47,14 +47,14 @@ jobs:
            path: |
             revanced-youtube-*-non-root.apk
             vanced-microg.apk
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "youtube"
-            prerelease: false
-            title: "Youtube ReVanced"
-            files: revanced-youtube-*-non-root.apk
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "youtube"
+#             prerelease: false
+#             title: "Youtube ReVanced"
+#             files: revanced-youtube-*-non-root.apk
 
    build-yt-music:
      runs-on: ubuntu-latest
@@ -95,14 +95,14 @@ jobs:
            name: revanced-music
            path: revanced-music-*-non-root.apk
            
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "yt-music"
-            prerelease: false
-            title: "Youtube Music ReVanced"
-            files: revanced-music-*-non-root.apk
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "yt-music"
+#             prerelease: false
+#             title: "Youtube Music ReVanced"
+#             files: revanced-music-*-non-root.apk
 
    build-twitch:
      runs-on: ubuntu-latest
@@ -143,14 +143,14 @@ jobs:
            name: revanced-twitch
            path: revanced-twitch-*-non-root.apk
            
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "twitch"
-            prerelease: false
-            title: "Twitch ReVanced"
-            files: revanced-twitch-*-non-root.apk
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "twitch"
+#             prerelease: false
+#             title: "Twitch ReVanced"
+#             files: revanced-twitch-*-non-root.apk
 
    build-reddit:
      runs-on: ubuntu-latest
@@ -191,14 +191,14 @@ jobs:
            name: revanced-reddit
            path: revanced-reddit-*-non-root.apk
            
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "reddit"
-            prerelease: false
-            title: "Reddit ReVanced"
-            files: revanced-reddit-*-non-root.apk
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "reddit"
+#             prerelease: false
+#             title: "Reddit ReVanced"
+#             files: revanced-reddit-*-non-root.apk
 
    build-twitter:
      runs-on: ubuntu-latest
@@ -239,14 +239,14 @@ jobs:
            name: revanced-twitter
            path: revanced-twitter-*-non-root.apk
            
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "twitter"
-            prerelease: false
-            title: "Twitter ReVanced"
-            files: revanced-twitter-*-non-root.apk
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "twitter"
+#             prerelease: false
+#             title: "Twitter ReVanced"
+#             files: revanced-twitter-*-non-root.apk
 
    build-tiktok:
      runs-on: ubuntu-latest
@@ -286,14 +286,14 @@ jobs:
            name: revanced-tiktok
            path: revanced-tiktok-*-non-root.apk
            
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
-            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "tiktok"
-            prerelease: false
-            title: "Tiktok ReVanced"
-            files: revanced-tiktok-*-non-root.apk
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "tiktok"
+#             prerelease: false
+#             title: "Tiktok ReVanced"
+#             files: revanced-tiktok-*-non-root.apk
 
    build-spotify:
      runs-on: ubuntu-latest
@@ -334,11 +334,32 @@ jobs:
            name: revanced-spotify
            path: revanced-spotify-*-non-root.apk
            
-       - name: Release signed APK
-         uses: "marvinpinto/action-automatic-releases@latest"
-         with:
+#        - name: Release signed APK
+#          uses: "marvinpinto/action-automatic-releases@latest"
+#          with:
+#             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+#             automatic_release_tag: "spotify"
+#             prerelease: false
+#             title: "Spotify ReVanced"
+#             files: revanced-spotify-*-non-root.apk
+            
+   Release_APK:
+    runs-on: ubuntu-latest
+    needs: [build-youtube, build-yt-music, build-twitch, build-reddit, build-twitter, build-tiktok, build-spotify]
+#     if: ${{ needs.job1.result == 'success' && needs.job2.result == 'success' }}
+    steps:
+      - name: Release signed APK
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "spotify"
+            automatic_release_tag: "latest"
             prerelease: false
-            title: "Spotify ReVanced"
-            files: revanced-spotify-*-non-root.apk
+            title: "ReVanced"
+            files: |
+               revanced-youtube-*-non-root.apk
+               revanced-music-*-non-root.apk
+               revanced-twitch-*-non-root.apk
+               revanced-reddit-*-non-root.apk
+               revanced-twitter-*-non-root.apk
+               revanced-tiktok-*-non-root.apk
+               revanced-spotify-*-non-root.apk

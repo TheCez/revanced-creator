@@ -8,7 +8,7 @@
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/XDream8/revanced-creator?style=flat-square">
   <img alt="GitHub forks" src="https://img.shields.io/github/forks/XDream8/revanced-creator?style=flat-square">
 </p>
-
+fuck
 **What does this do?**
 
 1. downloading the latest [revanced-cli](https://github.com/revanced/revanced-cli), [revanced-patches](https://github.com/revanced/revanced-patches) and [revanced-integrations](https://github.com/revanced/revanced-integrations).

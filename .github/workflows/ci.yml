@@ -348,6 +348,10 @@ jobs:
     needs: [build-youtube, build-yt-music, build-twitch, build-reddit, build-twitter, build-tiktok, build-spotify]
 #     if: ${{ needs.job1.result == 'success' && needs.job2.result == 'success' }}
     steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@master
+        with: 
+         path: ./
       - name: Release signed APK
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -356,10 +360,10 @@ jobs:
             prerelease: false
             title: "ReVanced"
             files: |
-               revanced-youtube-*-non-root.apk
-               revanced-music-*-non-root.apk
-               revanced-twitch-*-non-root.apk
-               revanced-reddit-*-non-root.apk
-               revanced-twitter-*-non-root.apk
-               revanced-tiktok-*-non-root.apk
-               revanced-spotify-*-non-root.apk
+               revanced-youtube/revanced-youtube-*-non-root.apk
+               revanced-music/revanced-music-*-non-root.apk
+               revanced-twitch/revanced-twitch-*-non-root.apk
+               revanced-reddit/revanced-reddit-*-non-root.apk
+               revanced-twitter/revanced-twitter-*-non-root.apk
+               revanced-tiktok/revanced-tiktok-*-non-root.apk
+               revanced-spotify/revanced-spotify-*-non-root.apk

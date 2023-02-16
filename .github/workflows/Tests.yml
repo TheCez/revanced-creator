@@ -1,10 +1,11 @@
 name: Tests
 
-on:
+on: 
    push:
+     branches:
+      - master
      paths:
        - '*.sh'
-       - '!release-versions/*'
    workflow_dispatch:
 
 jobs:

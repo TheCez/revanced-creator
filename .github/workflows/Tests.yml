@@ -4,6 +4,7 @@ on:
    push:
      paths:
        - '*.sh'
+       - '!release-versions/*'
    workflow_dispatch:
 
 jobs:

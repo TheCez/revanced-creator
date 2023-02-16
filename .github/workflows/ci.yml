@@ -1,9 +1,9 @@
 name: CI
 
 on:
-   push:
-     paths:
-       - 'release-versions/*'
+#    push:
+#      paths:
+#        - 'release-versions/*'
    workflow_dispatch:
 
 
@@ -28,13 +28,11 @@ jobs:
            REVANCED_CREATOR_KEYSTORE: ${{ secrets.REVANCED_CREATOR_KEYSTORE }}
          run: |
              printf '%s' "$REVANCED_CREATOR_KEYSTORE" | base64 -d - > revanced-creator.keystore
-
        - name: Build youtube
          run: |
           export additional_args="--keystore=revanced-creator.keystore"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
           curl -OL https://github.com/XDream8/revanced-creator/releases/download/youtube/vanced-microg.apk
-
        - name: Check if revanced-youtube apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -49,6 +47,14 @@ jobs:
            path: |
             revanced-youtube-*-non-root.apk
             vanced-microg.apk
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "youtube"
+            prerelease: false
+            title: "Youtube ReVanced"
+            files: revanced-youtube-*-non-root.apk
 
    build-yt-music:
      runs-on: ubuntu-latest
@@ -76,7 +82,6 @@ jobs:
           export additional_args="--keystore=revanced-creator.keystore"
           export what_to_patch="youtube-music"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
-
        - name: Check if revanced-music apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -89,6 +94,15 @@ jobs:
          with:
            name: revanced-music
            path: revanced-music-*-non-root.apk
+           
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "yt-music"
+            prerelease: false
+            title: "Youtube Music ReVanced"
+            files: revanced-music-*-non-root.apk
 
    build-twitch:
      runs-on: ubuntu-latest
@@ -116,7 +130,6 @@ jobs:
           export additional_args="--keystore=revanced-creator.keystore"
           export what_to_patch="twitch"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
-
        - name: Check if revanced-twitch apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -129,6 +142,15 @@ jobs:
          with:
            name: revanced-twitch
            path: revanced-twitch-*-non-root.apk
+           
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "twitch"
+            prerelease: false
+            title: "Twitch ReVanced"
+            files: revanced-twitch-*-non-root.apk
 
    build-reddit:
      runs-on: ubuntu-latest
@@ -156,7 +178,6 @@ jobs:
           export additional_args="--keystore=revanced-creator.keystore"
           export what_to_patch="reddit"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
-
        - name: Check if revanced-reddit apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -169,6 +190,15 @@ jobs:
          with:
            name: revanced-reddit
            path: revanced-reddit-*-non-root.apk
+           
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "reddit"
+            prerelease: false
+            title: "Reddit ReVanced"
+            files: revanced-reddit-*-non-root.apk
 
    build-twitter:
      runs-on: ubuntu-latest
@@ -196,7 +226,6 @@ jobs:
           export additional_args="--keystore=revanced-creator.keystore"
           export what_to_patch="twitter"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
-
        - name: Check if revanced-twitter apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -209,6 +238,15 @@ jobs:
          with:
            name: revanced-twitter
            path: revanced-twitter-*-non-root.apk
+           
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "twitter"
+            prerelease: false
+            title: "Twitter ReVanced"
+            files: revanced-twitter-*-non-root.apk
 
    build-tiktok:
      runs-on: ubuntu-latest
@@ -230,13 +268,11 @@ jobs:
            REVANCED_CREATOR_KEYSTORE: ${{ secrets.REVANCED_CREATOR_KEYSTORE }}
          run: |
              printf '%s' "$REVANCED_CREATOR_KEYSTORE" | base64 -d - > revanced-creator.keystore
-
        - name: Build tiktok
          run: |
           export additional_args="--keystore=revanced-creator.keystore"
           export what_to_patch="tiktok"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
-
        - name: Check if revanced-tiktok apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -249,6 +285,15 @@ jobs:
          with:
            name: revanced-tiktok
            path: revanced-tiktok-*-non-root.apk
+           
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "tiktok"
+            prerelease: false
+            title: "Tiktok ReVanced"
+            files: revanced-tiktok-*-non-root.apk
 
    build-spotify:
      runs-on: ubuntu-latest
@@ -276,7 +321,6 @@ jobs:
           export additional_args="--keystore=revanced-creator.keystore"
           export what_to_patch="spotify"
           sh -c "$(curl https://raw.githubusercontent.com/XDream8/revanced-creator/main/patch.sh)"
-
        - name: Check if revanced-spotify apk is created
          id: check_files
          uses: andstor/file-existence-action@v2
@@ -289,3 +333,12 @@ jobs:
          with:
            name: revanced-spotify
            path: revanced-spotify-*-non-root.apk
+           
+       - name: Release signed APK
+         uses: "marvinpinto/action-automatic-releases@latest"
+         with:
+            repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
+            automatic_release_tag: "spotify"
+            prerelease: false
+            title: "Spotify ReVanced"
+            files: revanced-spotify-*-non-root.apk

@@ -1,6 +1,9 @@
 name: CI
 
 on:
+   push:
+    branches:
+      - custom
 #    push:
 #      paths:
 #        - 'release-versions/*'

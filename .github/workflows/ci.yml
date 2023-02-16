@@ -348,6 +348,14 @@ jobs:
     needs: [build-youtube, build-yt-music, build-twitch, build-reddit, build-twitter, build-tiktok, build-spotify]
 #     if: ${{ needs.job1.result == 'success' && needs.job2.result == 'success' }}
     steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_SCOPED_TOKEN }}
+       
+      - name: Get latest version number
+        id: version-number
+        run: echo  "version=$(cat release-versions/patches-latest.md)">> $GITHUB_OUTPUT
+        
       - name: Download Artifacts
         uses: actions/download-artifact@master
         with: 
@@ -356,7 +364,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
             repo_token: "${{ secrets.REPO_SCOPED_TOKEN }}"
-            automatic_release_tag: "latest"
+            automatic_release_tag: steps.git-check.outputs.version
             prerelease: false
             title: "ReVanced"
             files: |
